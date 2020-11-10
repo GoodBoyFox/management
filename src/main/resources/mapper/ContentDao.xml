@@ -49,4 +49,19 @@
         where id = #{id} and del =1
     </update>
 
+    <!--删除内容-->
+    <update id="deleteContent" parameterType="Integer">
+        update content set del = 2 where id = #{id}
+    </update>
+
+    <!--查询所有的内容-->
+    <select id="selectAllContent" parameterType="String" resultType="com.backstage.management.entity.Content">
+        select * from content where del = 1
+    </select>
+
+    <!--根据ID查询内容-->
+    <select id="selectContentById" parameterType="Integer" resultType="com.backstage.management.entity.Content">
+        select * from content where id = #{id}
+    </select>
+
 </mapper>

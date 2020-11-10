@@ -99,6 +99,7 @@ public class CommonController {
     }
 
 
+
     /**
      * 修改轮播
      * */
@@ -118,7 +119,7 @@ public class CommonController {
      * */
     @PostMapping("/CommonController/IMG")
     public JSON insertCommodityIMG(MultipartFile file){
-        log.info("serveraddress------>"+serveraddress);
+        //log.info("serveraddress------>"+serveraddress);
         String fileId = FastDFSUtils.upload(file);
         String url = serveraddress + fileId;
         if(url!=null){
@@ -127,5 +128,6 @@ public class CommonController {
             return ResultData.getResponseData(null,ResultCode.IMG_ERROR);
         }
     }
+
 
 }

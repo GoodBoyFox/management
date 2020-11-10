@@ -21,6 +21,7 @@ import java.util.List;
  * @Date: 2020/11/9 18:51
  */
 @RestController
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -43,7 +44,7 @@ public class UserController {
      * 用户新增
      */
     @RequestMapping(value = "/setUser",method = RequestMethod.POST)
-    public JSON setUser(@ModelAttribute User user){
+    public JSON setUser(@RequestBody User user){
 
         int i = userService.insertUser(user);
         if (i>0){
@@ -80,8 +81,8 @@ public class UserController {
     /**
     * 更新用户
      */
-    @RequestMapping("/updateUser")
-    public JSON updateUser(@ModelAttribute User user){
+    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
+    public JSON updateUser(@RequestBody User user){
 
         int i = userService.updateUserSql(user);
         if (i>0){

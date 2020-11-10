@@ -4,6 +4,8 @@ package com.backstage.management.dao;
 import com.backstage.management.entity.Content;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @ProjectName: app
  * @Package: com.doctor.app.dao
@@ -17,4 +19,10 @@ public interface ContentDao {
     int insertContent(Content content);
 
     int updateContentSql(Content content);
+
+    int deleteContent(Integer id);
+
+    List<Content> selectAllContent();
+
+    Content selectContentById(Integer id);
 }
