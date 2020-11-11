@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Column {
 
     private Integer id;
-    private String name;
+    private String c_name;
     private String level;
     private String type;
     private Integer del;

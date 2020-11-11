@@ -25,4 +25,8 @@ public interface ContentDao {
     List<Content> selectAllContent();
 
     Content selectContentById(Integer id);
+
+    List<Content> selectContentByColumnId(Integer column_id);
+
+    int updateContentLiuLan(Integer column_id);
 }

@@ -19,8 +19,8 @@ import java.util.List;
  * @Description:
  * @Date: 2020/11/9 20:29
  */
-@RestController
 @CrossOrigin
+@RestController
 public class ContentController {
 
     @Autowired
@@ -93,6 +93,25 @@ public class ContentController {
         }
         return ResultData.getResponseData(null,ResultCode.DELETE_ERROR); //503
     }
+
+
+    //------------------------------------------------------------首页内容---------------------------------------------------
+    /**
+     * 根据栏目查找相应内容  更新浏览量
+     */
+    @RequestMapping(value = "/getContentByColumnId",method = RequestMethod.GET)
+    public JSON getContentByColumnId(@RequestParam("column_id") Integer column_id){
+
+        List<Content> list = contentService.selectContentByColumnId(column_id);
+
+        if (list!=null){
+            return ResultData.getResponseData(list,ResultCode.QUERY_SUCCESS);
+        }
+        return ResultData.getResponseData(null,ResultCode.QUERY_ERROR);
+    }
+
+
+
 
 
 }

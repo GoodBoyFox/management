@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.*;
  * @Date: 2020/11/9 20:46
  * @Version: 1.0
  */
-
-@RestController
 @CrossOrigin
+@RestController
 public class ArticleController {
 
     @Autowired
@@ -49,11 +48,11 @@ public class ArticleController {
         }
     }
 
-    @PostMapping("/ArticleController/insertColumn")
-    public JSON insertColumn(@ModelAttribute Column column){
+    @RequestMapping(value = "/ArticleController/insertColumn",method = RequestMethod.POST)
+    public JSON insertColumn(@RequestBody Column column){
         int i = articleService.insertColumn(column);
         if (i>0){
-            return ResultData.getResponseData(null, ResultCode.INSERT_SUCCESS);
+            return ResultData.getResponseData(i, ResultCode.INSERT_SUCCESS);
         }else {
             return ResultData.getResponseData(null, ResultCode.INSERT_ERROR);
         }
@@ -68,6 +67,8 @@ public class ArticleController {
             return ResultData.getResponseData(null, ResultCode.DELETE_ERROR);
         }
     }
+
+
 
 
 }

@@ -64,4 +64,15 @@
         select * from content where id = #{id}
     </select>
 
+    <!--根据栏目查找相应内容-->
+    <select id="selectContentByColumnId" parameterType="Integer" resultType="com.backstage.management.entity.Content">
+        select * from content where column_id = #{column_id}
+    </select>
+
+    <!--更新内容-->
+    <update id="updateContentLiuLan" parameterType="Integer">
+        update content set num = num+1 where column_id = #{column_id}
+    </update>
+
+
 </mapper>

@@ -25,4 +25,6 @@ public interface ContentService {
     Page<Content> selectAllContent(Integer CurrentPage);
 
     Content selectContentById(Integer id);
+
+    List<Content> selectContentByColumnId(Integer column_id);
 }

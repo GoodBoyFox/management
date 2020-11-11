@@ -27,6 +27,7 @@ import java.util.List;
  * @Version: 1.0
  */
 
+@CrossOrigin
 @RestController
 @Slf4j
 public class CommonController {
@@ -38,7 +39,7 @@ public class CommonController {
     private String serveraddress;
 
     /**
-     * 查找基本信息
+     * 查找基本信息   ----------------------------------------------------------------------------------------小程序公用
      * */
     @GetMapping("/CommonController/findAllBasic")
     public JSON findAllBasic(){
@@ -61,7 +62,7 @@ public class CommonController {
 
 
     /**
-     * 查找轮播
+     * 查找轮播   ----------------------------------------------------------------------------------------小程序公用
      * */
     @GetMapping("/CommonController/findAllRotation")
     public JSON findAllRotation(){

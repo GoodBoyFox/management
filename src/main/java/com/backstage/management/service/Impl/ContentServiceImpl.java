@@ -69,4 +69,14 @@ public class ContentServiceImpl implements ContentService {
         return contentDao.selectContentById(id);
     }
 
+    @Override
+    public List<Content> selectContentByColumnId(Integer column_id) {
+
+        //更新内容浏览量
+        int i = contentDao.updateContentLiuLan(column_id);
+
+        //查询内容根据栏目ID
+        return contentDao.selectContentByColumnId(column_id);
+    }
+
 }

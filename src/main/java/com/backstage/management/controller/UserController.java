@@ -37,7 +37,7 @@ public class UserController {
         if (b){
             return ResultData.getResponseData(b, ResultCode.LOGIN_SUCCESS);
         }
-        return ResultData.getResponseData(b,ResultCode.USER_PWD_ERROR);
+        return ResultData.getResponseData(null,ResultCode.USER_PWD_ERROR);
     }
 
     /**
