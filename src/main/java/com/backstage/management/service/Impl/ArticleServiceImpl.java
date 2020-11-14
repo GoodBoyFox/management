@@ -10,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,9 +30,14 @@ public class ArticleServiceImpl implements ArticleService {
     ArticleDao articleDao;
 
     @Override
-    public Page<Column> getAllColumn(Integer CurrentPage) {
+    public Page<Column> getAllColumn(Integer CurrentPage,Integer all) {
 
         Page<Column> page = new Page<>();
+        if (all==0){
+            List<Column> columns = articleDao.finaAllColumn();
+            page.setDatalist(columns);
+            return page;
+        }
         PageHelper.startPage(CurrentPage,10);
         List<Column> columns = articleDao.finaAllColumn();
         PageInfo<Column> info = new PageInfo<>(columns);
@@ -61,5 +67,41 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public int deleteColumn(Integer id) {
         return articleDao.deleteColumn(id);
+    }
+
+    @Override
+    public List<Column> getAllOneColumn() {
+
+        return articleDao.getAllOneColumn();
+    }
+
+    @Override
+    public List<Column> getXiaoAllColumn() {
+
+        List<Column> allOneColumn = articleDao.finaAllColumn();
+
+        List<Column> list1 = new ArrayList<>();
+        List<Column> list2 = new ArrayList<>();
+
+        for (Column column : allOneColumn) {
+            if (column.getLevel()==1){
+                list1.add(column);
+                System.out.println("list1"+list1);
+            }else{
+                list2.add(column);
+                System.out.println("list2"+list2);
+            }
+        }
+
+        for (Column column1 : list1) {
+            List<Column> list3 = new ArrayList<>();
+            for (Column column2 : list2) {
+                if (column1.getId().equals(column2.getFid()) ){
+                    list3.add(column2);
+                }
+            }
+            column1.setList(list3);
+        }
+        return list1;
     }
 }

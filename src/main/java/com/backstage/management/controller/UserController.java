@@ -83,7 +83,7 @@ public class UserController {
      */
     @PostMapping(value = "/updateUser")
     public JSON updateUser(@ModelAttribute User user){
-
+        System.out.println("user》》"+user);
         int i = userService.updateUserSql(user);
         if (i>0){
             return ResultData.getResponseData(i,ResultCode.INSERT_SUCCESS); //503

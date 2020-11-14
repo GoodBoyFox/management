@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 /**
  * @ProjectName: app
@@ -25,7 +26,7 @@ import java.util.List;
 public class ContentServiceImpl implements ContentService {
 
     @Autowired
-    private ContentDao contentDao;
+    ContentDao contentDao;
 
     @Override
     public int insertContent(Content content) {
@@ -54,6 +55,7 @@ public class ContentServiceImpl implements ContentService {
         Page<Content> page = new Page<>();
         PageHelper.startPage(CurrentPage,10);
         List<Content> Contents = contentDao.selectAllContent();
+
         PageInfo<Content> info = new PageInfo<>(Contents);
         page.setCurrentnumber(info.getPageNum());
         page.setCurrentpage(CurrentPage);

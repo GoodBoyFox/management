@@ -23,19 +23,21 @@ import java.util.List;
 @Component
 public interface ArticleDao {
 
-     @Select("select * from `column`")
+     @Select("select * from `column` where del =1" )
      List<Column> finaAllColumn();
 
-     @Select("select * from `column` where id=#{id}")
+     @Select("select * from `column` where id=#{id} and del =1")
      Column findColumnBuId(Integer id);
 
-     @Update("update `column` set c_name=#{c_name},level=#{level},type=#{type} where id=#{id}")
+     @Update("update `column` set c_name=#{c_name},level=#{level},type=#{type},fid=#{fid} where id=#{id}")
      int updateColumn(Column column);
 
-     @Insert("insert into `column` values(null,#{c_name},#{level},#{type},1)")
+     @Insert("insert into `column` values(null,#{c_name},#{level},#{type},1,#{fid})")
      int insertColumn(Column column);
 
      @Update("update `column` set del=2 where id=#{id}")
      int deleteColumn(Integer id);
 
+     @Select("select * from `column` where level=1 and del =1")
+     List<Column> getAllOneColumn();
 }

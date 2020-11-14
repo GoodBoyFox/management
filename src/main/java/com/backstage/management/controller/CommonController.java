@@ -91,11 +91,12 @@ public class CommonController {
      * */
     @GetMapping("/CommonController/ddelRotation/{id}")
     public JSON ddelRotation(@PathVariable("id") Integer id){
+        System.out.println("id》》》"+id);
         int i = commonService.ddelRotation(id);
         if (i>0){
-            return ResultData.getResponseData(null, ResultCode.DELETE_SUCCESS);
+            return ResultData.getResponseData("删除成功", ResultCode.DELETE_SUCCESS);
         }else {
-            return ResultData.getResponseData(null, ResultCode.DELETE_ERROR);
+            return ResultData.getResponseData("删除失败", ResultCode.DELETE_ERROR);
         }
     }
 
@@ -143,6 +144,9 @@ public class CommonController {
             return ResultData.getResponseData(null,ResultCode.IMG_ERROR);
         }
     }
+
+
+
 
 
 }

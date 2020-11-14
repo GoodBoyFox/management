@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  * @ProjectName: Zhixiang
  * @Package: com.doctor.app.entity
@@ -21,7 +25,11 @@ public class Column {
 
     private Integer id;
     private String c_name;
-    private String level;
+    private Integer level;
     private String type;
     private Integer del;
+    private Integer fid;
+
+    private List<Column> list;
+
 }

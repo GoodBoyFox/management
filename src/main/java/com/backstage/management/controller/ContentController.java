@@ -9,6 +9,9 @@ import com.backstage.management.util.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.crypto.Data;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,7 +35,9 @@ public class ContentController {
      */
     @RequestMapping(value = "/setContent",method = RequestMethod.POST)
     public JSON setContent(@RequestBody Content content){
-
+        System.out.println("content》》》"+content);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        content.setReleasedate(format.format(new Date()));
         int i =  contentService.insertContent(content);
         if (i>0){
             return ResultData.getResponseData(i, ResultCode.INSERT_SUCCESS); //503
@@ -95,22 +100,18 @@ public class ContentController {
     }
 
 
-    //------------------------------------------------------------首页内容---------------------------------------------------
+    //------------------------------------------------------------小程序 ----  首页内容---------------------------------------------------
     /**
      * 根据栏目查找相应内容  更新浏览量
      */
     @RequestMapping(value = "/getContentByColumnId",method = RequestMethod.GET)
     public JSON getContentByColumnId(@RequestParam("column_id") Integer column_id){
-
         List<Content> list = contentService.selectContentByColumnId(column_id);
-
         if (list!=null){
             return ResultData.getResponseData(list,ResultCode.QUERY_SUCCESS);
         }
         return ResultData.getResponseData(null,ResultCode.QUERY_ERROR);
     }
-
-
 
 
 

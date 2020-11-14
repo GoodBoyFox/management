@@ -4,6 +4,8 @@ package com.backstage.management.service;
 import com.backstage.management.entity.Column;
 import com.backstage.management.util.Page;
 
+import java.util.List;
+
 /**
  * @ProjectName: Zhixiang
  * @Package: com.doctor.app.service
@@ -15,7 +17,7 @@ import com.backstage.management.util.Page;
  */
 public interface ArticleService {
 
-    Page<Column> getAllColumn(Integer CurrentPage);
+    Page<Column> getAllColumn(Integer CurrentPage,Integer all);
 
     Column getColumnBuId(Integer id);
 
@@ -24,4 +26,8 @@ public interface ArticleService {
     int insertColumn(Column column);
 
     int deleteColumn(Integer id);
+
+    List<Column> getAllOneColumn();
+
+    List<Column> getXiaoAllColumn();
 }

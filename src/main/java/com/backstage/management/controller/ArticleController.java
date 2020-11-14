@@ -9,6 +9,8 @@ import com.backstage.management.util.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @ProjectName: Zhixiang
  * @Package: com.doctor.app.controller
@@ -26,9 +28,9 @@ public class ArticleController {
     ArticleService articleService;
 
 
-    @GetMapping("/ArticleController/finaAllColumn/{CurrentPage}")
-    public JSON  finaAllColumn(@PathVariable("CurrentPage") Integer CurrentPage){
-        Page<Column> allColumn = articleService.getAllColumn(CurrentPage);
+    @GetMapping("/ArticleController/finaAllColumn/{CurrentPage}/{all}")
+    public JSON  finaAllColumn(@PathVariable("CurrentPage") Integer CurrentPage,@PathVariable("all") Integer all){
+        Page<Column> allColumn = articleService.getAllColumn(CurrentPage,all);
         return ResultData.getResponseData(allColumn, ResultCode.QUERY_SUCCESS);
     }
 
@@ -38,8 +40,8 @@ public class ArticleController {
         return ResultData.getResponseData(columnBuId, ResultCode.QUERY_SUCCESS);
     }
 
-    @PostMapping(value = "/ArticleController/updateColumn")
-    public JSON  updateColumn(@ModelAttribute Column column){
+    @RequestMapping(value = "/ArticleController/updateColumn",method = RequestMethod.POST)
+    public JSON  updateColumn(@RequestBody Column column){
         int i = articleService.updateColumn(column);
         if (i>0){
             return ResultData.getResponseData("修改成功", ResultCode.UPDATE_SUCCESS);
@@ -60,6 +62,7 @@ public class ArticleController {
 
     @GetMapping("/ArticleController/deleteColumn/{id}")
     public JSON deleteColumn(@PathVariable("id") Integer id){
+        System.out.println("id》》》》"+id);
         int i = articleService.deleteColumn(id);
         if (i>0){
             return ResultData.getResponseData("删除成功", ResultCode.DELETE_SUCCESS);
@@ -68,7 +71,27 @@ public class ArticleController {
         }
     }
 
+    /**
+     * 查询所有一级栏目
+     */
+    @GetMapping("/ArticleController/findAllOneColumn")
+    public JSON  findAllOneColumn(){
+        List<Column> columnBuId = articleService.getAllOneColumn();
+        return ResultData.getResponseData(columnBuId, ResultCode.QUERY_SUCCESS);
+    }
 
+
+    /**
+     * 小程序栏目显示
+     */
+    /**
+     * 查询所有一级栏目
+     */
+    @GetMapping("/ArticleController/findXiaoAllColumn")
+    public JSON  findXiaoAllColumn(){
+        List<Column> columnBuId = articleService.getXiaoAllColumn();
+        return ResultData.getResponseData(columnBuId, ResultCode.QUERY_SUCCESS);
+    }
 
 
 }

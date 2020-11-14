@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @ProjectName: Zhixiang
  * @Package: com.doctor.app.entity
@@ -27,10 +29,12 @@ public class Content {
     private String views;  //图片集url
     private String releasedate;  //发布时间
     private String num;  //浏览量
-    private String Abbreviation_url;  //缩略图
+    private String abbreviation_url;  //缩略图
     private String details;  //内容详情
     private String atlas; // 留言内容
     private String name; //留言姓名
     private String phone; //留言手机号
     private Integer del;  //删除
+
+    private Integer type;
 }

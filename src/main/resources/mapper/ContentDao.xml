@@ -4,8 +4,8 @@
 
     <!--插入内容-->
     <insert id="insertContent" parameterType="com.backstage.management.entity.Content">
-            insert into content(title,column_id,`column_name`,views,releasedate,num,Abbreviation_url,details,atlas,`name`,phone,del)
-            values (#{title},#{column_id},#{column_name},#{views},#{releasedate},#{num},#{Abbreviation_url},#{details},#{atlas},#{name},#{phone},1)
+            insert into content(title,column_id,`column_name`,views,releasedate,num,abbreviation_url,details,atlas,`name`,phone,del)
+            values (#{title},#{column_id},#{column_name},#{views},#{releasedate},0,#{abbreviation_url},#{details},#{atlas},#{name},#{phone},1)
     </insert>
 
     <!--更新内容-->
@@ -30,8 +30,8 @@
             <if test="num != null and num != 0">
                 num = #{num},
             </if>
-            <if test="Abbreviation_url != null and Abbreviation_url != ''">
-                Abbreviation_url = #{Abbreviation_url},
+            <if test="abbreviation_url != null and abbreviation_url != ''">
+                abbreviation_url = #{abbreviation_url},
             </if>
             <if test="details != null and details != ''">
                 details = #{details},
@@ -56,12 +56,12 @@
 
     <!--查询所有的内容-->
     <select id="selectAllContent" parameterType="String" resultType="com.backstage.management.entity.Content">
-        select * from content where del = 1
+        select co.*,col.c_name,col.type from content as co,`column` as col where  co.column_id = col.id and co.del = 1
     </select>
 
     <!--根据ID查询内容-->
     <select id="selectContentById" parameterType="Integer" resultType="com.backstage.management.entity.Content">
-        select * from content where id = #{id}
+         select co.*,col.c_name,col.type from content as co,`column` as col where  co.column_id = col.id and co.del = 1 and co.id =#{id}
     </select>
 
     <!--根据栏目查找相应内容-->
