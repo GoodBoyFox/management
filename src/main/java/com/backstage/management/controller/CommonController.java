@@ -79,7 +79,7 @@ public class CommonController {
     public JSON insertRotation(@ModelAttribute Rotation rotation){
         int i = commonService.insertRotation(rotation);
         if (i>0){
-            return ResultData.getResponseData(null, ResultCode.INSERT_SUCCESS);
+            return ResultData.getResponseData(i, ResultCode.INSERT_SUCCESS);
         }else {
             return ResultData.getResponseData(null, ResultCode.INSERT_ERROR);
         }
@@ -100,15 +100,29 @@ public class CommonController {
     }
 
 
+    /**
+    * @FunctionName: 根据ID 查找轮播
+    * @author: Ywj
+    * @Param:
+    * @Return:
+    */
+    @GetMapping("/CommonController/findRotationById/{id}")
+    public JSON findRotationById(@PathVariable("id") Integer id){
+        Rotation allRotation = commonService.getRotationById(id);
+
+        return ResultData.getResponseData(allRotation, ResultCode.QUERY_SUCCESS);
+
+    }
 
     /**
      * 修改轮播
      * */
-    @PostMapping("/CommonController/updateRotation")
-    public JSON updateRotation(@ModelAttribute Rotation rotation){
+    @RequestMapping(value = "/CommonController/updateRotation",method = RequestMethod.POST)
+    public JSON updateRotation(@RequestBody Rotation rotation){
         int i = commonService.updateRotation(rotation);
+        System.out.println("修改轮播");
         if (i>0){
-            return ResultData.getResponseData(null, ResultCode.UPDATE_SUCCESS);
+            return ResultData.getResponseData(i, ResultCode.UPDATE_SUCCESS);
         }else {
             return ResultData.getResponseData(null, ResultCode.UPDATE_ERROR);
         }

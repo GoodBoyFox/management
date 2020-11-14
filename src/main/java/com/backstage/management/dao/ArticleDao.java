@@ -29,7 +29,7 @@ public interface ArticleDao {
      @Select("select * from `column` where id=#{id}")
      Column findColumnBuId(Integer id);
 
-     @Update("update `column` set c_name=#{c_name},level=#{level},type=#{type} where = id=#{id}")
+     @Update("update `column` set c_name=#{c_name},level=#{level},type=#{type} where id=#{id}")
      int updateColumn(Column column);
 
      @Insert("insert into `column` values(null,#{c_name},#{level},#{type},1)")

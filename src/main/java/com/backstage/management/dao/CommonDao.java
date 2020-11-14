@@ -36,9 +36,9 @@ public interface CommonDao {
     @Delete("delete from rotation where id=#{id}")
     int ddelRotation(Integer id);
 
-    @Update("update rotation set name=#{name},url=#{url},remarks=#{remarks},del=#{del} where id=#{id}")
+    @Update("update rotation set name=#{name},url=#{url},remarks=#{remarks} where id=#{id}")
     int updateRotation(Rotation rotation);
 
-
-
+    @Select("select * from rotation where id = #{id}")
+    Rotation getRotationById(Integer id);
 }

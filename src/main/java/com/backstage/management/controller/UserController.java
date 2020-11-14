@@ -81,8 +81,8 @@ public class UserController {
     /**
     * 更新用户
      */
-    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
-    public JSON updateUser(@RequestBody User user){
+    @PostMapping(value = "/updateUser")
+    public JSON updateUser(@ModelAttribute User user){
 
         int i = userService.updateUserSql(user);
         if (i>0){
@@ -94,8 +94,8 @@ public class UserController {
     /**
      * 删除用户
      */
-    @RequestMapping("/deleteUser")
-    public JSON deleteUser(@RequestParam("id") Integer id){
+    @GetMapping("/deleteUser/{id}")
+    public JSON deleteUser(@PathVariable("id") Integer id){
 
         int i = userService.deleteUserSql(id);
         if (i>0){

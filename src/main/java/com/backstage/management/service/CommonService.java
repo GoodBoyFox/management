@@ -28,4 +28,6 @@ public interface CommonService {
     int ddelRotation(Integer id);
 
     int updateRotation(Rotation rotation);
+
+    Rotation getRotationById(Integer id);
 }

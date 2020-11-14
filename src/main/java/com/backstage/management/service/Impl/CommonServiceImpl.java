@@ -55,4 +55,9 @@ public class CommonServiceImpl implements CommonService {
     public int updateRotation(Rotation rotation) {
         return commonDao.updateRotation(rotation);
     }
+
+    @Override
+    public Rotation getRotationById(Integer id) {
+        return commonDao.getRotationById(id);
+    }
 }
