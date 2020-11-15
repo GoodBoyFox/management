@@ -50,12 +50,16 @@ public class ContentServiceImpl implements ContentService {
     }
 
     @Override
-    public Page<Content> selectAllContent(Integer CurrentPage) {
+    public Page<Content> selectAllContent(Integer CurrentPage,Integer all) {
 
         Page<Content> page = new Page<>();
+        if (all==0){
+            List<Content> Contents = contentDao.selectAllContent();
+            page.setDatalist(Contents);
+            return page;
+        }
         PageHelper.startPage(CurrentPage,10);
         List<Content> Contents = contentDao.selectAllContent();
-
         PageInfo<Content> info = new PageInfo<>(Contents);
         page.setCurrentnumber(info.getPageNum());
         page.setCurrentpage(CurrentPage);

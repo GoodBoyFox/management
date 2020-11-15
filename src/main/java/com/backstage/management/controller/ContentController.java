@@ -76,9 +76,9 @@ public class ContentController {
      * 查询全部内容
      */
     @RequestMapping(value = "/getAllContent",method = RequestMethod.GET)
-    public JSON getAllContent(@RequestParam("CurrentPage") Integer CurrentPage){
+    public JSON getAllContent(@RequestParam("CurrentPage") Integer CurrentPage,@RequestParam("all") Integer all){
 
-        Page<Content> list = contentService.selectAllContent(CurrentPage);
+        Page<Content> list = contentService.selectAllContent(CurrentPage,all);
 
         if (list!=null){
             return ResultData.getResponseData(list,ResultCode.QUERY_SUCCESS);
@@ -112,6 +112,7 @@ public class ContentController {
         }
         return ResultData.getResponseData(null,ResultCode.QUERY_ERROR);
     }
+
 
 
 

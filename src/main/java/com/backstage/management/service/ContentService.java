@@ -22,7 +22,7 @@ public interface ContentService {
 
     int deleteContent(Integer id);
 
-    Page<Content> selectAllContent(Integer CurrentPage);
+    Page<Content> selectAllContent(Integer CurrentPage,Integer all);
 
     Content selectContentById(Integer id);
 
