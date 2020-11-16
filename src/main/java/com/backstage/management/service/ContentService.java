@@ -27,4 +27,6 @@ public interface ContentService {
     Content selectContentById(Integer id);
 
     List<Content> selectContentByColumnId(Integer column_id);
+
+    Page<Content> getAllLiuYanSql(Integer CurrentPage);
 }

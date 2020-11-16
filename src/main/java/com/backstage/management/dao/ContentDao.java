@@ -1,6 +1,7 @@
 package com.backstage.management.dao;
 
 
+import com.backstage.management.entity.Column;
 import com.backstage.management.entity.Content;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -29,4 +30,9 @@ public interface ContentDao {
     List<Content> selectContentByColumnId(Integer column_id);
 
     int updateContentLiuLan(Integer column_id);
+
+
+    List<Content> getAllLiuYanSql();
+
+    List<Column> selectAllTwo(Integer column_id);
 }

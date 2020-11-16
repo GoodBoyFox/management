@@ -9,7 +9,6 @@ import com.backstage.management.util.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -50,7 +49,7 @@ public class ContentController {
      */
     @RequestMapping(value = "/updateContent",method = RequestMethod.POST)
     public JSON updateContent(@RequestBody Content content){
-
+        System.out.println("content》》》"+content);
         int i =  contentService.updateContentSql(content);
 
         if (i>0){
@@ -113,6 +112,18 @@ public class ContentController {
         return ResultData.getResponseData(null,ResultCode.QUERY_ERROR);
     }
 
+
+    /**
+    *  查询留言列表
+    */
+    @RequestMapping(value = "/getAllLiuYan",method = RequestMethod.GET)
+    public JSON getAllLiuYan(@RequestParam("CurrentPage") Integer CurrentPage){
+        Page<Content> contentList = contentService.getAllLiuYanSql(CurrentPage);
+        if (contentList!=null){
+            return ResultData.getResponseData(contentList,ResultCode.QUERY_SUCCESS);
+        }
+        return ResultData.getResponseData(null,ResultCode.QUERY_ERROR);
+    }
 
 
 

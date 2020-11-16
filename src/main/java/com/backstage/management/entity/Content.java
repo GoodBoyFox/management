@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 /**
  * @ProjectName: Zhixiang
  * @Package: com.doctor.app.entity
@@ -24,7 +22,7 @@ public class Content {
 
     private Integer id;
     private String title;  //标题
-    private Integer column_id;  //l栏目ID
+    private String column_id;  //l栏目ID
     private String column_name;  //栏目名称
     private String views;  //图片集url
     private String releasedate;  //发布时间

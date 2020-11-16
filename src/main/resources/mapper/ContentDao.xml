@@ -10,12 +10,12 @@
 
     <!--更新内容-->
     <update id="updateContentSql" parameterType="com.backstage.management.entity.Content">
-        update`user`
+        update content
         <set>
             <if test="title != null and title != ''">
                 title = #{title},
             </if>
-            <if test="column_id != null and column_id != 0">
+            <if test="column_id != null and column_id != ''">
                 column_id = #{column_id},
             </if>
             <if test="column_name != null and column_name != ''">
@@ -74,5 +74,13 @@
         update content set num = num+1 where column_id = #{column_id}
     </update>
 
+    <!--查询所有留言-->
+    <select id="getAllLiuYanSql" parameterType="String" resultType="com.backstage.management.entity.Content">
+          SELECT * FROM content WHERE atlas is not null
+    </select>
 
+    <!--查询二级-->
+    <select id="selectAllTwo" parameterType="Integer" resultType="com.backstage.management.entity.Column">
+        select * from `column` where fid = #{column_id}
+    </select>
 </mapper>
